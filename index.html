@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed the Kangaroos Demo</title>
+</head>
+<body>
+
+    <!-- Heading -->
+    <h1>Feed the Kangaroos Demo</h1>
+    
+    <!-- Shroud's Twitch Livestream Embed -->
+    <div>
+        <h2>Watch Shroud's Livestream</h2>
+        <iframe
+            src="https://player.twitch.tv/?channel=shrood&parent=guavacodes.github.io"
+            height="480"
+            width="854"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true">
+        </iframe>
+    </div>
+
+    <!-- Webhook Button -->
+    <button onclick="sendDiscordWebhook()">FEED ME!</button>
+
+    <script>
+        function sendDiscordWebhook() {
+            // Discord Webhook URL
+            const webhookURL = 'https://discord.com/api/webhooks/1358111782513672463/jhM3abo74Mg9avKF3cqTBlyiODdGdwItwYMm95NNyLCvgQBRtfso6lnYvCz-pq29R7DI';
+
+            // Data to send in the webhook request
+            const data = {
+                content: 'someone clicked my ahh', // Message to send
+                username: 'hook dawg', // Customize the bot name
+                avatar_url: 'https://i.imgur.com/XXLCiRc.jpeg' // Customize the avatar (optional)
+            };
+
+            // Send the webhook request
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Webhook sent successfully:', data);
+            })
+            .catch(error => {
+                console.error('Error sending webhook:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>
